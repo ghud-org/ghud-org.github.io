@@ -18,7 +18,7 @@ At Ghud, we embrace **modularity and loose coupling** not only in our software d
 
 - Each product has a **unique, descriptive name** reflecting its purpose.
 - Each product explicitly declares the **category it implements** via a simple namespace-style prefix:
-    - ghud <category>: <product-name>
+    - ghud \[category\]: \[product-name\]
 
 ---
 
