@@ -1,0 +1,23 @@
+{
+  "name": "ghud-org.github.io",
+  "version": "1.0.0",
+  "description": "**Building software that simplifies life, supports focus, and scales with people.**",
+  "homepage": "https://github.com/ghud-org/ghud-org.github.io#readme",
+  "bugs": {
+    "url": "https://github.com/ghud-org/ghud-org.github.io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghud-org/ghud-org.github.io.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "carlcidromero",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "showdown": "^2.1.0"
+  }
+}
