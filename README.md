@@ -1,42 +1,30 @@
-# Ghud Org
+# Ghud 🕰️
 
-## What's Ghud?
+**Building software that simplifies life, supports focus, and scales with people.**
 
-**Ghud** is an open-source ecosystem and organization dedicated to building elegant, minimal, and thoughtfully designed software tools inspired by timeless software principles. Our mission is to empower developers by providing foundational libraries, utilities, and applications that embrace clarity, simplicity, and composability—rooted in the Elegant Objects approach to object-oriented programming and clean design philosophies.
+At Ghud, we believe productivity is **holistic** — balancing family, work, and simplicity — and that well-designed software should reflect that philosophy. Our projects aim to help people spend less time fighting tools and more time doing what matters.
 
-At Ghud, we believe software should feel intuitive and intentional, fostering a natural flow in development and user experience. Whether crafting core programming libraries or innovative tools like Fengsh-UI, our goal is to cultivate a digital garden of projects that inspire creativity and practical craftsmanship.
+## 🌱 Philosophy & Focus
 
----
+- **Holistic Productivity:** Tools and concepts that help you manage time, energy, and priorities with clarity.
+- **Simplicity First:** Minimal, maintainable designs that reduce friction for users and developers alike.
+- **Thought Leadership:** Essays, articles, and blog posts sharing insights on engineering, personal productivity, and organizational design.
+- **Software Principles:** Core concepts that guide how we design software — scalable, maintainable, user-first, and purposeful.
 
-## Ghud Ecosystem Naming Guide
+## 🚀 Active Project: Tandm
 
-At Ghud, we embrace **modularity and loose coupling** not only in our software design but also in our product naming. Every product in the Ghud ecosystem uniquely implements a **single category** or **function**, similar to how a class implements an interface.
+**Tandm** (Time and Money) is our flagship calendar app that **integrates financial awareness directly into your schedule**.
 
----
+- Designed to help users **plan their time and budget simultaneously** in a single tool, making it easier to adapt to life’s unpredictability.
+- Solves a common pain point: managing time and money in separate places while most events have associated costs.
+- Ideal for anyone who wants to **manage events, expenses, and priorities all in one place**.
 
-### Naming Pattern
+👉 [View the Tandm repo](https://github.com/ghud-org/tandm)
 
-- Each product has a **unique, descriptive name** reflecting its purpose.
-- Each product explicitly declares the **category it implements** via a simple namespace-style prefix:
-    - ghud \[category\]: \[product-name\]
+## 📖 Blog & Essays
 
----
+We document ideas that inspire our software design and productivity approach:
 
-### Examples
+- [Ghud Blog](https://ghud-org.github.io) — essays, articles, and tutorials on productivity, engineering, and design philosophy.
 
-| Category | Product Name | Full Name Example        | Description                              |
-| -------- | ------------ | ------------------------ | ---------------------------------------- |
-| OOP      | elegant-js   | ghud oop: elegant-js     | An Elegant Objects inspired JS library   |
-| SSG      | fengsh-ui    | ghud ssg: fengsh-ui      | HTML-first zero-JS static site generator |
-| Website  | garden-eng   | ghud website: garden-eng | Ghud's digital garden.                   |
-
----
-
-### Benefits
-
-- **Loose coupling:** Categories are interfaces; implementations can swap easily.
-- **Clear contracts:** Users instantly know what a product _does_ and its role.
-- **Creative freedom:** Products keep unique names that resonate with their vision.
-- **Scalability:** Easily add new categories or implementations without naming conflicts.
-
----
+⚡ _"Software should amplify your focus, not fragment it."_
