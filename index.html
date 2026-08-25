@@ -1,91 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="index.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ghud</title>
-  </head>
-  <body>
-    <h1>Ghud 🕰️</h1>
-    <article>
-      <p>
-        <strong
-          >Building software that simplifies life, supports focus, and scales
-          with people.</strong
-        >
-      </p>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ghud — Technical partner for small businesses and nonprofits</title>
+<meta name="description" content="Ghud is the technical partner for small businesses and nonprofits: website management, email marketing, search, business email, and custom development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111111;
+  --ink-deep:#000000;
+  --paper:#FFFFFF;
+  --paper-2:#F1F1F1;
+  --pine:#0B57D0;
+  --pine-deep:#083F9B;
+  --amber:#8AB4F8;
+  --red:#C5221F;
+  --rule:rgba(17,17,17,.16);
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Newsreader",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --pad:clamp(20px,5vw,64px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:clamp(17px,1.05vw,19px);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--pine)}
+a:visited{color:#6B29A8}
+:focus-visible{outline:2px solid var(--pine);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--pine);margin:0 0 14px;
+}
 
-      <p>
-        At Ghud, we believe productivity is <strong>holistic</strong> —
-        balancing family, work, and simplicity — and that well-designed software
-        should reflect that philosophy. Our projects aim to help people spend
-        less time fighting tools and more time doing what matters.
-      </p>
+/* ---------- header ---------- */
+.masthead{
+  background:var(--ink-deep);color:var(--paper);
+  position:sticky;top:0;z-index:50;
+}
+.masthead a{color:inherit}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
+.mark{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.03em;text-decoration:none}
+.mark span{color:var(--amber)}
+.nav{display:flex;gap:22px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.nav a{text-decoration:none;opacity:.75;padding:4px 0;border-bottom:1px solid transparent}
+.nav a:hover,.nav a:focus-visible{opacity:1;border-bottom-color:var(--amber)}
+@media(max-width:620px){.nav a:not(.nav-cta){display:none}}
 
-      <h2>🌱 Philosophy &amp; Focus</h2>
-      <ul>
-        <li>
-          <strong>Holistic Productivity:</strong> Tools and concepts that help
-          you manage time, energy, and priorities with clarity.
-        </li>
-        <li>
-          <strong>Simplicity First:</strong> Minimal, maintainable designs that
-          reduce friction for users and developers alike.
-        </li>
-        <li>
-          <strong>Thought Leadership:</strong> Essays, articles, and blog posts
-          sharing insights on engineering, personal productivity, and
-          organizational design.
-        </li>
-        <li>
-          <strong>Software Principles:</strong> Core concepts that guide how we
-          design software — scalable, maintainable, user-first, and purposeful.
-        </li>
-      </ul>
+/* ---------- hero ---------- */
+.hero{background:var(--ink-deep);color:var(--paper);padding-bottom:clamp(56px,8vw,96px)}
+.hero h1{
+  font-family:var(--display);font-weight:800;letter-spacing:-.035em;line-height:1.02;
+  font-size:clamp(40px,7.4vw,80px);margin:0 0 24px;max-width:15ch;
+}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero p{max-width:46ch;font-size:clamp(18px,1.6vw,21px);color:rgba(255,255,255,.78);margin:0 0 32px}
+.hero .eyebrow{color:var(--amber)}
+.btn{
+  display:inline-block;font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--pine);color:#fff;text-decoration:none;
+  padding:15px 26px;border:0;cursor:pointer;transition:transform .15s ease,background .15s ease;
+}
+.btn:hover,.btn:focus-visible{background:var(--pine-deep);transform:translateY(-2px)}
+.reveal{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+.reveal:nth-child(2){animation-delay:.08s}
+.reveal:nth-child(3){animation-delay:.16s}
+.reveal:nth-child(4){animation-delay:.24s}
+@keyframes rise{to{opacity:1;transform:none}}
 
-      <h2>🚀 Active Project: Tandm</h2>
-      <p>
-        <strong>Tandm</strong> (Time and Money) is our flagship calendar app
-        that
-        <strong
-          >integrates financial awareness directly into your schedule</strong
-        >.
-      </p>
-      <ul>
-        <li>
-          Designed to help users
-          <strong>plan their time and budget simultaneously</strong> in a single
-          tool, making it easier to adapt to life’s unpredictability.
-        </li>
-        <li>
-          Solves a common pain point: managing time and money in separate places
-          while most events have associated costs.
-        </li>
-        <li>
-          Ideal for anyone who wants to
-          <strong
-            >manage events, expenses, and priorities all in one place</strong
-          >.
-        </li>
-      </ul>
-      <p>
-        👉 <a href="https://github.com/ghud-org/tandm">View the Tandm repo</a>
-      </p>
+/* ---------- services board ---------- */
+.board{padding:clamp(56px,8vw,96px) 0 clamp(40px,6vw,72px)}
+.board h2,.steps h2,.inquire h2{
+  font-family:var(--display);font-weight:700;letter-spacing:-.025em;
+  font-size:clamp(28px,3.6vw,40px);margin:0 0 10px;
+}
+.board .hint{font-family:var(--mono);font-size:12.5px;color:rgba(17,17,17,.6);margin:0 0 28px}
+.rows{border-top:1px solid var(--rule)}
+.row{
+  display:grid;grid-template-columns:44px 1fr auto;gap:0 20px;align-items:baseline;
+  width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule);
+  font:inherit;color:inherit;padding:24px 16px;cursor:pointer;
+  transition:background .18s ease,color .18s ease,padding-left .18s ease;
+}
+.row:hover,.row:focus-visible{background:var(--paper-2);padding-left:24px;outline:none}
+.row:focus-visible{box-shadow:inset 3px 0 0 var(--pine)}
+.row .idx{font-family:var(--mono);font-size:12px;color:var(--pine);letter-spacing:.06em}
+.row .name{font-family:var(--display);font-weight:700;font-size:clamp(21px,2.4vw,27px);letter-spacing:-.02em;line-height:1.2;margin:0}
+.row .desc{margin:8px 0 0;color:rgba(17,17,17,.75);max-width:52ch;font-size:.94em}
+.row .pick{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--pine);border:1px solid var(--pine);padding:6px 10px;white-space:nowrap;align-self:center;
+}
+.row[aria-pressed="true"]{background:var(--pine);color:var(--paper);padding-left:24px}
+.row[aria-pressed="true"] .idx{color:var(--amber)}
+.row[aria-pressed="true"] .desc{color:rgba(255,255,255,.82)}
+.row[aria-pressed="true"] .pick{background:#fff;border-color:#fff;color:var(--pine)}
+@media(max-width:640px){
+  .row{grid-template-columns:32px 1fr;gap:0 14px;padding:20px 12px}
+  .row .pick{grid-column:2;justify-self:start;margin-top:12px}
+}
 
-      <h2>📖 Blog &amp; Essays</h2>
-      <p>
-        We document ideas that inspire our software design and productivity
-        approach:
-      </p>
-      <ul>
-        <li>
-          <a href="/blog">Ghud Blog</a> — essays, articles, and tutorials on
-          productivity, engineering, and design philosophy.
-        </li>
-      </ul>
+/* ---------- selected work ---------- */
+.work{background:var(--paper-2);padding:clamp(56px,8vw,88px) 0}
+.work h2{font-family:var(--display);font-weight:700;letter-spacing:-.025em;font-size:clamp(28px,3.6vw,40px);margin:0 0 10px}
+.work .lede{max-width:56ch;color:rgba(17,17,17,.75);margin:0 0 36px}
+.cases{border-top:1px solid var(--rule)}
+.case{
+  display:grid;grid-template-columns:190px 1fr;gap:0 32px;
+  border-bottom:1px solid var(--rule);padding:26px 0;
+}
+.case .meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--pine);padding-top:6px}
+.case h3{font-family:var(--display);font-weight:700;font-size:clamp(19px,2.1vw,24px);letter-spacing:-.02em;line-height:1.25;margin:0 0 10px}
+.case p{margin:0;color:rgba(17,17,17,.78);max-width:60ch;font-size:.95em}
+@media(max-width:720px){
+  .case{grid-template-columns:1fr;gap:10px}
+  .case .meta{padding-top:0}
+}
 
-      <p><em>⚡ "Software should amplify your focus, not fragment it."</em></p>
-    </article>
-  </body>
+/* ---------- steps ---------- */
+.steps{padding:clamp(56px,8vw,88px) 0}
+.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);margin-top:32px}
+.step{border-top:2px solid var(--pine);padding-top:16px}
+.step .n{font-family:var(--mono);font-size:12px;color:var(--pine);letter-spacing:.1em;display:block;margin-bottom:8px}
+.step h3{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.015em;margin:0 0 8px}
+.step p{margin:0;font-size:.95em;color:rgba(17,17,17,.78)}
+@media(max-width:720px){.step-grid{grid-template-columns:1fr;gap:24px}}
+
+/* ---------- form ---------- */
+.inquire{padding:clamp(56px,8vw,96px) 0}
+.inquire .lede{max-width:48ch;color:rgba(17,17,17,.75);margin:0 0 32px}
+form{display:grid;gap:20px;max-width:640px}
+.field{display:grid;gap:7px}
+label{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,17,.7)}
+input,textarea,select{
+  font-family:var(--body);font-size:17px;color:var(--ink);
+  background:#fff;border:1px solid var(--rule);border-radius:0;padding:13px 14px;width:100%;
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+textarea{min-height:130px;resize:vertical;line-height:1.55}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--pine);box-shadow:0 0 0 3px rgba(11,87,208,.16)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:600px){.two{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;min-height:34px;align-items:center}
+.chip{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;background:var(--pine);color:var(--paper);
+  padding:7px 10px;display:inline-flex;align-items:center;gap:8px;
+}
+.chip button{background:none;border:0;color:var(--amber);cursor:pointer;font:inherit;line-height:1;padding:0}
+.chips .empty{font-family:var(--mono);font-size:12px;color:rgba(17,17,17,.5)}
+.note{font-family:var(--mono);font-size:11.5px;color:rgba(17,17,17,.55);margin:0}
+.status{font-family:var(--mono);font-size:13px;padding:14px;display:none}
+.status.ok{display:block;background:var(--pine);color:var(--paper)}
+.status.err{display:block;background:var(--red);color:#fff}
+.hp{position:absolute;left:-9999px}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink-deep);color:rgba(255,255,255,.6);padding:36px 0;font-family:var(--mono);font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--amber)}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="mark" href="#top">Ghud<span>.</span></a>
+    <nav class="nav">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#how">How it works</a>
+      <a class="nav-cta" href="#inquire">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow reveal">Technical partner for small businesses &amp; nonprofits</p>
+    <h1 class="reveal">Every org needs a technologist -- that's Ghud with software.</h1>
+    <p class="reveal">Ghud is the technical partner small organizations bring in instead of hiring. Website, newsletter, email accounts, custom software — and whatever else turns out to be technical. One person who learns how you work and stays with it.</p>
+    <a class="btn reveal" href="#inquire">Tell me what you need</a>
+  </div>
+</section>
+
+<section class="board" id="services">
+  <div class="wrap">
+    <p class="eyebrow">What I handle</p>
+    <h2>Whatever the technical thing is, it lands with me.</h2>
+    <p class="hint">These are the requests that come up most — from a page edit to a system built from scratch. The list is not a menu: if it's technical and it's in the way, ask. Selecting a service adds it to the form below.</p>
+
+    <div class="rows" id="rows">
+      <button type="button" class="row" aria-pressed="false" data-service="Your website">
+        <span class="idx">01</span>
+        <span>
+          <span class="name">Your website</span>
+          <span class="desc">Kept current and kept findable. New pages, event listings, staff changes, and the broken thing you noticed last week — plus the search work that decides whether anyone reaches the site at all.</span>
+        </span>
+        <span class="pick">Select</span>
+      </button>
+
+      <button type="button" class="row" aria-pressed="false" data-service="Email and outreach">
+        <span class="idx">02</span>
+        <span>
+          <span class="name">Email and outreach</span>
+          <span class="desc">Both kinds of email. Newsletters and campaigns that get written, built, and sent on schedule — and the accounts underneath them, so your team is on real addresses at your own domain instead of personal Gmail.</span>
+        </span>
+        <span class="pick">Select</span>
+      </button>
+
+      <button type="button" class="row" aria-pressed="false" data-service="Custom software and systems">
+        <span class="idx">03</span>
+        <span>
+          <span class="name">Custom software and systems</span>
+          <span class="desc">When the software you need doesn't exist, I build it — internal tools, databases, portals, automations, and full applications shaped around how your organization actually works. When it does exist, I connect what you already run, so the same record stops getting entered into five systems that don't talk to each other.</span>
+        </span>
+        <span class="pick">Select</span>
+      </button>
+
+      <button type="button" class="row" aria-pressed="false" data-service="Everything else technical">
+        <span class="idx">04</span>
+        <span>
+          <span class="name">Everything else technical</span>
+          <span class="desc">The software no one knows how to run, the integration that broke, the vendor you need someone to talk to. If it's technical and it's your problem, it can be mine instead. If I'm genuinely not the right person, I'll tell you and point you somewhere better.</span>
+        </span>
+        <span class="pick">Select</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <p class="eyebrow">Selected work</p>
+    <h2>Enterprise experience, at your scale.</h2>
+    <p class="lede">Before working with small organizations, I built and led systems for large ones. That's the point: you get the judgment that comes from high-stakes projects, without the headcount, the agency retainer, or the six-month discovery phase.</p>
+
+    <div class="cases">
+      <article class="case">
+        <p class="meta">Nonprofit · Seattle<br>Neighborhood Builders</p>
+        <div>
+          <h3>A web app that became the organization's operating system</h3>
+          <p>Led a digital transformation that began with a custom-built intake application for the organization's largest program — thousands of applicants a year, with logic no off-the-shelf form tool handled on its own. That application became the front end for an organization-wide CRM, customized and connected so departments that had kept separate records began working from shared data. Staff became able to work remotely. During this period the organization was selected for Bank of America's Neighborhood Builders program, and I was named its Emerging Leader for the two-year leadership track that comes with it.</p>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="meta">Enterprise<br>Multiple business units</p>
+        <div>
+          <h3>A shared frontend library behind multiple products</h3>
+          <p>Founding maintainer of an enterprise component library that product teams across business units built on. Each team stopped rebuilding the same pieces, and products shipped faster and looked like they came from the same company.</p>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="meta">Enterprise<br>Greenfield product</p>
+        <div>
+          <h3>A manual process turned into a revenue stream</h3>
+          <p>Led frontend architecture on a new product that replaced a slow, tedious process for a high-value customer base. Digitizing it removed the bottleneck and opened a line of revenue the business had not been able to serve before.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="steps" id="how">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Three steps, no long sales process.</h2>
+    <div class="step-grid">
+      <div class="step">
+        <span class="n">STEP 01</span>
+        <h3>You send the form</h3>
+        <p>Describe the situation in whatever detail you have. I reply within two business days.</p>
+      </div>
+      <div class="step">
+        <span class="n">STEP 02</span>
+        <h3>We talk for 20 minutes</h3>
+        <p>A short call to see what's actually needed. You get an honest estimate of hours, free.</p>
+      </div>
+      <div class="step">
+        <span class="n">STEP 03</span>
+        <h3>Work starts</h3>
+        <p>Ongoing work is billed hourly and month to month, no retainer minimum. Project work is scoped and quoted up front.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="inquire" id="inquire">
+  <div class="wrap">
+    <p class="eyebrow">Get in touch</p>
+    <h2>Tell me what you need.</h2>
+    <p class="lede">The more specific you are, the more useful my first reply will be. There's no obligation and no follow-up sequence — I answer personally.</p>
+
+    <form id="inquiry" novalidate>
+      <div class="two">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="org">Organization</label>
+          <input id="org" name="organization" type="text" autocomplete="organization">
+        </div>
+      </div>
+
+      <div class="two">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="site">Current website</label>
+          <input id="site" name="website" type="text" placeholder="example.org">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="rows">What you need</label>
+        <div class="chips" id="chips"><span class="empty">Select services above, or just describe it below.</span></div>
+        <input type="hidden" name="services" id="servicesField">
+      </div>
+
+      <div class="field">
+        <label for="timing">How soon</label>
+        <select id="timing" name="timing">
+          <option>Not urgent — planning ahead</option>
+          <option>Next few weeks</option>
+          <option>This week, something is broken</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">Details</label>
+        <textarea id="message" name="message" placeholder="What's the situation? What's been getting in the way?" required></textarea>
+      </div>
+
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div>
+        <button class="btn" type="submit" id="submit">Send inquiry</button>
+      </div>
+      <p class="note">Your details go to me and nowhere else.</p>
+      <p class="status" id="status" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Ghud — technical partner to small businesses and nonprofits.</span>
+    <span><a href="mailto:hello@ghud.com">hello@ghud.com</a></span>
+  </div>
+</footer>
+
+<script>
+/* ---------------------------------------------------------------
+   SET THESE TWO VALUES
+   FORM_ENDPOINT: paste your Formspree URL (https://formspree.io/f/xxxxxxx).
+                  Leave "" and the form falls back to opening an email.
+   CONTACT_EMAIL: where fallback emails go.
+----------------------------------------------------------------*/
+const FORM_ENDPOINT = "";
+const CONTACT_EMAIL = "hello@ghud.com";
+
+const selected = new Set();
+const chips = document.getElementById('chips');
+const hidden = document.getElementById('servicesField');
+
+function renderChips(){
+  chips.innerHTML = '';
+  if(!selected.size){
+    chips.innerHTML = '<span class="empty">Select services above, or just describe it below.</span>';
+  } else {
+    selected.forEach(s => {
+      const chip = document.createElement('span');
+      chip.className = 'chip';
+      chip.textContent = s;
+      const x = document.createElement('button');
+      x.type = 'button'; x.textContent = '×';
+      x.setAttribute('aria-label', 'Remove ' + s);
+      x.onclick = () => toggle(s);
+      chip.appendChild(x);
+      chips.appendChild(chip);
+    });
+  }
+  hidden.value = [...selected].join(', ');
+}
+
+function toggle(service){
+  const btn = document.querySelector(`.row[data-service="${CSS.escape(service)}"]`);
+  if(selected.has(service)){ selected.delete(service); btn.setAttribute('aria-pressed','false'); btn.querySelector('.pick').textContent='Select'; }
+  else { selected.add(service); btn.setAttribute('aria-pressed','true'); btn.querySelector('.pick').textContent='Added'; }
+  renderChips();
+}
+
+document.querySelectorAll('.row').forEach(btn => {
+  btn.addEventListener('click', () => toggle(btn.dataset.service));
+});
+renderChips();
+
+const form = document.getElementById('inquiry');
+const status = document.getElementById('status');
+const submit = document.getElementById('submit');
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  status.className = 'status';
+  if(!form.checkValidity()){
+    status.className = 'status err';
+    status.textContent = 'Add your name, email, and a few details, then send again.';
+    form.reportValidity();
+    return;
+  }
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  if(!FORM_ENDPOINT){
+    const body = `Name: ${data.name}\nOrganization: ${data.organization||'—'}\nEmail: ${data.email}\nWebsite: ${data.website||'—'}\nServices: ${data.services||'—'}\nTiming: ${data.timing}\n\n${data.message}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Inquiry from '+data.name)}&body=${encodeURIComponent(body)}`;
+    return;
+  }
+
+  submit.textContent = 'Sending…'; submit.disabled = true;
+  try{
+    const res = await fetch(FORM_ENDPOINT, {
+      method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}
+    });
+    if(!res.ok) throw new Error('bad response');
+    form.reset(); selected.clear();
+    document.querySelectorAll('.row').forEach(b=>{b.setAttribute('aria-pressed','false');b.querySelector('.pick').textContent='Select';});
+    renderChips();
+    status.className = 'status ok';
+    status.textContent = 'Sent. You will hear back within two business days.';
+  }catch(err){
+    status.className = 'status err';
+    status.textContent = `That did not go through. Email ${CONTACT_EMAIL} directly and I will pick it up there.`;
+  }finally{
+    submit.textContent = 'Send inquiry'; submit.disabled = false;
+  }
+});
+</script>
+</body>
 </html>
