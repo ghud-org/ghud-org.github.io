@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ghud — Technical partner for small businesses and nonprofits</title>
 <meta name="description" content="Ghud is the technical partner for small businesses and nonprofits: website management, email marketing, search, business email, and custom development.">
+<link rel="icon" href="/assets/brand/ghud-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/ghud-favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/brand/ghud-favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/ghud-apple-touch-icon-180.png">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ghud.org/">
+<meta property="og:title" content="Ghud — Technical partner for small businesses and nonprofits">
+<meta property="og:description" content="Website management, email marketing, search, business email, and custom development for small organizations.">
+<meta property="og:image" content="https://ghud.org/assets/brand/ghud-profile-1024.png">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -47,8 +58,8 @@ a:visited{color:#6B29A8}
 }
 .masthead a{color:inherit}
 .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
-.mark{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.03em;text-decoration:none}
-.mark span{color:var(--amber)}
+.mark{display:block;line-height:0}
+.mark img{display:block;height:34px;width:auto}
 .nav{display:flex;gap:22px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
 .nav a{text-decoration:none;opacity:.75;padding:4px 0;border-bottom:1px solid transparent}
 .nav a:hover,.nav a:focus-visible{opacity:1;border-bottom-color:var(--amber)}
@@ -165,6 +176,8 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--pine);bo
 footer{background:var(--ink-deep);color:rgba(255,255,255,.6);padding:36px 0;font-family:var(--mono);font-size:12px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a{color:var(--amber)}
+footer .sig{display:inline-flex;align-items:center;gap:12px}
+footer .sig img{height:14px;width:auto;opacity:.7}
 
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -177,7 +190,7 @@ footer a{color:var(--amber)}
 
 <header class="masthead">
   <div class="wrap">
-    <a class="mark" href="#top">Ghud<span>.</span></a>
+    <a class="mark" href="#top"><img src="/assets/brand/ghud-wordmark-reverse.svg" alt="Ghud" width="63" height="34"></a>
     <nav class="nav">
       <a href="#services">Services</a>
       <a href="#work">Work</a>
@@ -362,7 +375,7 @@ footer a{color:var(--amber)}
 
 <footer>
   <div class="wrap">
-    <span>Ghud — technical partner to small businesses and nonprofits.</span>
+    <span class="sig"><img src="/assets/brand/ghud-mark-reverse.svg" alt="" width="25" height="14">Ghud — technical partner to small businesses and nonprofits.</span>
     <span><a href="mailto:cid@ghud.org">cid@ghud.org</a></span>
   </div>
 </footer>
