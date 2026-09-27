@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- GitHub Pages can't send headers, so the security policy lives here. If FORM_ENDPOINT is set, add its origin to connect-src. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self' mailto:; base-uri 'none'; object-src 'none'; upgrade-insecure-requests">
 <title>Ghud — Technical partner for small businesses and nonprofits</title>
 <meta name="description" content="Ghud is the technical partner for small businesses and nonprofits: website management, email marketing, search, business email, and custom development.">
 <link rel="icon" href="/assets/brand/ghud-favicon.svg" type="image/svg+xml">
@@ -30,6 +32,7 @@
   --amber:#8AB4F8;
   --red:#C5221F;
   --rule:rgba(17,17,17,.16);
+  --field-rule:rgba(17,17,17,.48);
   --display:"Bricolage Grotesque",system-ui,sans-serif;
   --body:"Newsreader",Georgia,serif;
   --mono:"IBM Plex Mono",ui-monospace,monospace;
@@ -45,11 +48,22 @@ body{
 a{color:var(--pine)}
 a:visited{color:#6B29A8}
 :focus-visible{outline:2px solid var(--pine);outline-offset:2px}
+/* Keep focused controls clear of the sticky header. */
+:where(a,button,input,select,textarea,[tabindex]){scroll-margin-top:88px}
 .wrap{max-width:1080px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
 .eyebrow{
   font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--pine);margin:0 0 14px;
 }
+
+/* ---------- skip link ---------- */
+.skip{
+  position:absolute;left:var(--pad);top:-64px;z-index:100;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--pine);color:#fff;padding:12px 18px;text-decoration:none;
+}
+.skip:focus{top:12px}
+main:focus{outline:none}
 
 /* ---------- header ---------- */
 .masthead{
@@ -100,7 +114,7 @@ a:visited{color:#6B29A8}
   font:inherit;color:inherit;padding:24px 16px;cursor:pointer;
   transition:background .18s ease,color .18s ease,padding-left .18s ease;
 }
-.row:hover,.row:focus-visible{background:var(--paper-2);padding-left:24px;outline:none}
+.row:hover,.row:focus-visible{background:var(--paper-2);padding-left:24px;outline:2px solid transparent}
 .row:focus-visible{box-shadow:inset 3px 0 0 var(--pine)}
 .row .idx{font-family:var(--mono);font-size:12px;color:var(--pine);letter-spacing:.06em}
 .row .name{font-family:var(--display);font-weight:700;font-size:clamp(21px,2.4vw,27px);letter-spacing:-.02em;line-height:1.2;margin:0}
@@ -110,7 +124,7 @@ a:visited{color:#6B29A8}
   color:var(--pine);border:1px solid var(--pine);padding:6px 10px;white-space:nowrap;align-self:center;
 }
 .row[aria-pressed="true"]{background:var(--pine);color:var(--paper);padding-left:24px}
-.row[aria-pressed="true"] .idx{color:var(--amber)}
+.row[aria-pressed="true"] .idx{color:#D2E3FC}
 .row[aria-pressed="true"] .desc{color:rgba(255,255,255,.82)}
 .row[aria-pressed="true"] .pick{background:#fff;border-color:#fff;color:var(--pine)}
 @media(max-width:640px){
@@ -149,14 +163,15 @@ a:visited{color:#6B29A8}
 .inquire .lede{max-width:48ch;color:rgba(17,17,17,.75);margin:0 0 32px}
 form{display:grid;gap:20px;max-width:640px}
 .field{display:grid;gap:7px}
-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,17,.7)}
+label,.label{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(17,17,17,.7)}
 input,textarea,select{
   font-family:var(--body);font-size:17px;color:var(--ink);
-  background:#fff;border:1px solid var(--rule);border-radius:0;padding:13px 14px;width:100%;
+  background:#fff;border:1px solid var(--field-rule);border-radius:0;padding:13px 14px;width:100%;
   transition:border-color .15s ease,box-shadow .15s ease;
 }
 textarea{min-height:130px;resize:vertical;line-height:1.55}
-input:focus,textarea:focus,select:focus{outline:none;border-color:var(--pine);box-shadow:0 0 0 3px rgba(11,87,208,.16)}
+input:focus,textarea:focus,select:focus{outline:2px solid transparent;border-color:var(--pine);box-shadow:0 0 0 3px rgba(11,87,208,.16)}
+input:user-invalid,textarea:user-invalid{border-color:var(--red)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media(max-width:600px){.two{grid-template-columns:1fr}}
 .chips{display:flex;flex-wrap:wrap;gap:8px;min-height:34px;align-items:center}
@@ -164,13 +179,21 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--pine);bo
   font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;background:var(--pine);color:var(--paper);
   padding:7px 10px;display:inline-flex;align-items:center;gap:8px;
 }
-.chip button{background:none;border:0;color:var(--amber);cursor:pointer;font:inherit;line-height:1;padding:0}
-.chips .empty{font-family:var(--mono);font-size:12px;color:rgba(17,17,17,.5)}
-.note{font-family:var(--mono);font-size:11.5px;color:rgba(17,17,17,.55);margin:0}
-.status{font-family:var(--mono);font-size:13px;padding:14px;display:none}
-.status.ok{display:block;background:var(--pine);color:var(--paper)}
-.status.err{display:block;background:var(--red);color:#fff}
+.chip button{
+  background:none;border:0;color:#D2E3FC;cursor:pointer;font:inherit;line-height:1;padding:0;
+  display:inline-flex;align-items:center;justify-content:center;min-width:24px;min-height:24px;margin:-4px -6px -4px 0;
+}
+.chips .empty{font-family:var(--mono);font-size:12px;color:rgba(17,17,17,.62)}
+.note{font-family:var(--mono);font-size:11.5px;color:rgba(17,17,17,.62);margin:0}
+.status{font-family:var(--mono);font-size:13px;padding:14px}
+/* Out of layout while empty, but still in the accessibility tree so screen readers announce it when filled. */
+.status:empty{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%)}
+.status.ok{background:var(--pine);color:var(--paper)}
+.status.err{background:var(--red);color:#fff}
 .hp{position:absolute;left:-9999px}
+.req{color:var(--pine);margin-left:4px}
+.field-err{display:none;font-family:var(--mono);font-size:12px;color:var(--red);margin:0}
+input:user-invalid ~ .field-err{display:block}
 
 /* ---------- footer ---------- */
 footer{background:var(--ink-deep);color:rgba(255,255,255,.6);padding:36px 0;font-family:var(--mono);font-size:12px}
@@ -188,6 +211,8 @@ footer .sig img{height:14px;width:auto;opacity:.7}
 </head>
 <body>
 
+<a class="skip" href="#main">Skip to content</a>
+
 <header class="masthead">
   <div class="wrap">
     <a class="mark" href="#top"><img src="/assets/brand/ghud-wordmark-reverse.svg" alt="Ghud" width="63" height="34"></a>
@@ -199,6 +224,8 @@ footer .sig img{height:14px;width:auto;opacity:.7}
     </nav>
   </div>
 </header>
+
+<main id="main" tabindex="-1">
 
 <section class="hero" id="top">
   <div class="wrap">
@@ -216,38 +243,38 @@ footer .sig img{height:14px;width:auto;opacity:.7}
     <p class="hint">These are the requests that come up most — from a page edit to a system built from scratch. The list is not a menu: if it's technical and it's in the way, ask. Selecting a service adds it to the form below.</p>
 
     <div class="rows" id="rows">
-      <button type="button" class="row" aria-pressed="false" data-service="Your website">
+      <button type="button" class="row" aria-pressed="false" data-service="Your website" data-phrase="website management" aria-labelledby="svc-web-name" aria-describedby="svc-web-desc">
         <span class="idx">01</span>
         <span>
-          <span class="name">Your website</span>
-          <span class="desc">Kept current and kept findable. New pages, event listings, staff changes, and the broken thing you noticed last week — plus the search work that decides whether anyone reaches the site at all.</span>
+          <span class="name" id="svc-web-name">Your website</span>
+          <span class="desc" id="svc-web-desc">Kept current and kept findable. New pages, event listings, staff changes, and the broken thing you noticed last week — plus the search work that decides whether anyone reaches the site at all.</span>
         </span>
         <span class="pick">Select</span>
       </button>
 
-      <button type="button" class="row" aria-pressed="false" data-service="Email and outreach">
+      <button type="button" class="row" aria-pressed="false" data-service="Email and outreach" data-phrase="email and outreach" aria-labelledby="svc-email-name" aria-describedby="svc-email-desc">
         <span class="idx">02</span>
         <span>
-          <span class="name">Email and outreach</span>
-          <span class="desc">Both kinds of email. Newsletters and campaigns that get written, built, and sent on schedule — and the accounts underneath them, so your team is on real addresses at your own domain instead of personal Gmail.</span>
+          <span class="name" id="svc-email-name">Email and outreach</span>
+          <span class="desc" id="svc-email-desc">Both kinds of email. Newsletters and campaigns that get written, built, and sent on schedule — and the accounts underneath them, so your team is on real addresses at your own domain instead of personal Gmail.</span>
         </span>
         <span class="pick">Select</span>
       </button>
 
-      <button type="button" class="row" aria-pressed="false" data-service="Custom software and systems">
+      <button type="button" class="row" aria-pressed="false" data-service="Custom software and systems" data-phrase="custom software and systems" aria-labelledby="svc-software-name" aria-describedby="svc-software-desc">
         <span class="idx">03</span>
         <span>
-          <span class="name">Custom software and systems</span>
-          <span class="desc">When the software you need doesn't exist, I build it — internal tools, databases, portals, automations, and full applications shaped around how your organization actually works. When it does exist, I connect what you already run, so the same record stops getting entered into five systems that don't talk to each other.</span>
+          <span class="name" id="svc-software-name">Custom software and systems</span>
+          <span class="desc" id="svc-software-desc">When the software you need doesn't exist, I build it — internal tools, databases, portals, automations, and full applications shaped around how your organization actually works. When it does exist, I connect what you already run, so the same record stops getting entered into five systems that don't talk to each other.</span>
         </span>
         <span class="pick">Select</span>
       </button>
 
-      <button type="button" class="row" aria-pressed="false" data-service="Everything else technical">
+      <button type="button" class="row" aria-pressed="false" data-service="Everything else technical" data-phrase="help with something else technical" aria-labelledby="svc-other-name" aria-describedby="svc-other-desc">
         <span class="idx">04</span>
         <span>
-          <span class="name">Everything else technical</span>
-          <span class="desc">The software no one knows how to run, the integration that broke, the vendor you need someone to talk to. If it's technical and it's your problem, it can be mine instead. If I'm genuinely not the right person, I'll tell you and point you somewhere better.</span>
+          <span class="name" id="svc-other-name">Everything else technical</span>
+          <span class="desc" id="svc-other-desc">The software no one knows how to run, the integration that broke, the vendor you need someone to talk to. If it's technical and it's your problem, it can be mine instead. If I'm genuinely not the right person, I'll tell you and point you somewhere better.</span>
         </span>
         <span class="pick">Select</span>
       </button>
@@ -319,50 +346,56 @@ footer .sig img{height:14px;width:auto;opacity:.7}
     <h2>Tell me what you need.</h2>
     <p class="lede">The more specific you are, the more useful my first reply will be. There's no obligation and no follow-up sequence — I answer personally.</p>
 
-    <form id="inquiry" novalidate>
+    <!-- Without JS the form opens a plain mailto draft; the script below validates, then uses FORM_ENDPOINT or a written email. -->
+    <form id="inquiry" action="mailto:cid@ghud.org" method="post" enctype="text/plain">
+      <p class="note">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
+
       <div class="two">
         <div class="field">
-          <label for="name">Your name</label>
-          <input id="name" name="name" type="text" autocomplete="name" required>
+          <label for="name">Your name<span class="req" aria-hidden="true">*</span></label>
+          <input id="name" name="name" type="text" autocomplete="name" maxlength="120" required>
         </div>
         <div class="field">
           <label for="org">Organization</label>
-          <input id="org" name="organization" type="text" autocomplete="organization">
+          <input id="org" name="organization" type="text" autocomplete="organization" maxlength="200">
         </div>
       </div>
 
       <div class="two">
         <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required>
+          <label for="email">Email<span class="req" aria-hidden="true">*</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required
+                 pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}" title="An email address like name@example.org" aria-describedby="email-err">
+          <p class="field-err" id="email-err">Enter an email address like name@example.org so I can reply.</p>
         </div>
         <div class="field">
           <label for="site">Current website</label>
-          <input id="site" name="website" type="text" placeholder="example.org">
+          <input id="site" name="website" type="text" placeholder="example.org" autocomplete="url" inputmode="url" autocapitalize="off" spellcheck="false" maxlength="253">
         </div>
       </div>
 
       <div class="field">
-        <label for="rows">What you need</label>
-        <div class="chips" id="chips"><span class="empty">Select services above, or just describe it below.</span></div>
+        <span class="label" id="needs-label">What you need</span>
+        <div class="chips" id="chips" role="group" aria-labelledby="needs-label" tabindex="-1"><span class="empty">Select services above, or just describe it below.</span></div>
         <input type="hidden" name="services" id="servicesField">
       </div>
 
       <div class="field">
         <label for="timing">How soon</label>
         <select id="timing" name="timing">
-          <option>Not urgent — planning ahead</option>
-          <option>Next few weeks</option>
-          <option>This week, something is broken</option>
+          <option data-phrase="This isn't urgent; I'm planning ahead.">Not urgent — planning ahead</option>
+          <option data-phrase="I'd like to get started in the next few weeks.">Next few weeks</option>
+          <option data-phrase="It's urgent: something is broken and I need help this week.">This week, something is broken</option>
         </select>
       </div>
 
       <div class="field">
-        <label for="message">Details</label>
-        <textarea id="message" name="message" placeholder="What's the situation? What's been getting in the way?" required></textarea>
+        <label for="message">Details<span class="req" aria-hidden="true">*</span></label>
+        <textarea id="message" name="message" placeholder="What's the situation? What's been getting in the way?" maxlength="5000" required></textarea>
       </div>
 
-      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <!-- Honeypot: hidden from people, filled by bots. Disabled so the no-JS mailto draft leaves it out; the script enables it. -->
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" disabled>
 
       <div>
         <button class="btn" type="submit" id="submit">Send inquiry</button>
@@ -372,6 +405,8 @@ footer .sig img{height:14px;width:auto;opacity:.7}
     </form>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">
@@ -385,6 +420,8 @@ footer .sig img{height:14px;width:auto;opacity:.7}
    SET THESE TWO VALUES
    FORM_ENDPOINT: paste your Formspree URL (https://formspree.io/f/xxxxxxx).
                   Leave "" and the form falls back to opening an email.
+                  Also add its origin to connect-src in the
+                  Content-Security-Policy meta tag, or the browser blocks it.
    CONTACT_EMAIL: where fallback emails go.
 ----------------------------------------------------------------*/
 const FORM_ENDPOINT = "";
@@ -406,7 +443,13 @@ function renderChips(){
       const x = document.createElement('button');
       x.type = 'button'; x.textContent = '×';
       x.setAttribute('aria-label', 'Remove ' + s);
-      x.onclick = () => toggle(s);
+      x.onclick = () => {
+        // The removed button takes focus with it; hand focus to the next chip, or the group when none are left.
+        const i = [...selected].indexOf(s);
+        toggle(s);
+        const rest = chips.querySelectorAll('button');
+        (rest[Math.min(i, rest.length - 1)] || chips).focus();
+      };
       chip.appendChild(x);
       chips.appendChild(chip);
     });
@@ -426,24 +469,63 @@ document.querySelectorAll('.row').forEach(btn => {
 });
 renderChips();
 
+// Build a natural-language email from the answers for the mailto fallback.
+function draftEmail({ name, organization: org, email, website, message }){
+  const services = [...selected].map(s => document.querySelector(`.row[data-service="${CSS.escape(s)}"]`).dataset.phrase);
+  const timing = document.getElementById('timing').selectedOptions[0].dataset.phrase;
+
+  const intro = org
+    ? `My name is ${name}, and I'm reaching out on behalf of ${org}.`
+    : `My name is ${name}, and I'm reaching out about some technical help.`;
+  let interest = '';
+  if(services.length === 1) interest = `I'm interested in ${services[0]}.`;
+  else if(services.length > 1) interest = "I'm interested in:\n" + services.map(s => '- ' + s).join('\n');
+  const context = [website && `${org ? 'Our' : 'My'} current website is ${website}.`, timing].filter(Boolean).join(' ');
+
+  const body = [
+    'Hi Cid,',
+    intro,
+    interest,
+    context,
+    message,
+    `You can reach me at ${email}.`,
+    `Thanks,\n${name}`
+  ].filter(Boolean).join('\n\n');
+  const subject = `Inquiry from ${name}${org ? ' at ' + org : ''}`;
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 const form = document.getElementById('inquiry');
 const status = document.getElementById('status');
 const submit = document.getElementById('submit');
+const trap = form.elements._gotcha;
+
+// With JS on, validation is handled below so the status message can explain it.
+form.noValidate = true;
+trap.disabled = false;
+
+// Whitespace-only answers should fail "required" the same way empty ones do.
+const textFields = form.querySelectorAll('input[type=text], input[type=email], textarea');
+const trimAll = () => textFields.forEach(el => { el.value = el.value.trim(); });
+textFields.forEach(el => el.addEventListener('change', trimAll));
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
   status.className = 'status';
+  status.textContent = '';
+  trimAll();
   if(!form.checkValidity()){
     status.className = 'status err';
     status.textContent = 'Add your name, email, and a few details, then send again.';
     form.reportValidity();
     return;
   }
+  // A filled honeypot means a bot; drop it without telling it why.
+  if(trap.value) return;
   const data = Object.fromEntries(new FormData(form).entries());
 
   if(!FORM_ENDPOINT){
-    const body = `Name: ${data.name}\nOrganization: ${data.organization||'—'}\nEmail: ${data.email}\nWebsite: ${data.website||'—'}\nServices: ${data.services||'—'}\nTiming: ${data.timing}\n\n${data.message}`;
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Inquiry from '+data.name)}&body=${encodeURIComponent(body)}`;
+    window.location.href = draftEmail(data);
     return;
   }
 
